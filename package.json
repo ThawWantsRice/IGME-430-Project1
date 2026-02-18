@@ -1,0 +1,27 @@
+{
+  "name": "igme-430-project1",
+  "version": "1.0.0",
+  "description": "Project 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThawWantsRice/IGME-430-Project1.git"
+  },
+  "author": "Thaw Thaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThawWantsRice/IGME-430-Project1/issues"
+  },
+  "homepage": "https://github.com/ThawWantsRice/IGME-430-Project1#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "global": "^4.4.0",
+    "globals": "^17.3.0",
+    "webpack": "^5.105.2",
+    "webpack-cli": "^6.0.1"
+  }
+}
