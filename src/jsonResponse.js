@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { request } = require('http');
 const path = require('path');
 const url = require('url');
 

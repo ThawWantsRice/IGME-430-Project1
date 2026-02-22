@@ -15,7 +15,7 @@
   \**************************/
 () {
 
-eval("{\n\n//# sourceURL=webpack://igme-430-project1/./client/client.js?\n}");
+eval("{const handleResponse = async (response) => {\r\n\r\n};\r\n\n\n//# sourceURL=webpack://igme-430-project1/./client/client.js?\n}");
 
 /***/ }
 

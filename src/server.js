@@ -24,7 +24,7 @@ const onRequest = (request, response) => {
     return urlStruct[parsedUrl.pathname](request, response);
   }
 
-  return urlStruct.notReal(request, response);
+  return urlStruct.notFound(request, response);
 }
 
 http.createServer(onRequest).listen(port, () => {
