@@ -8,10 +8,10 @@ const urlStruct = {
   '/': htmlHandler.getIndex,
   '/style.css': htmlHandler.getCSS,
   '/bundle.js': htmlHandler.getBundle,
-  // '/success': jsonHandler.success,
+  '/getPokemon': jsonHandler.getPokemon,
   //'/badRequest': jsonHandler.badRequest,
-  
-  notReal: jsonHandler.notReal,
+
+  notFound: jsonHandler.notFound,
 };
 
 const onRequest = (request, response) => {
@@ -22,7 +22,7 @@ const onRequest = (request, response) => {
     return urlStruct[parsedUrl.pathname](request, response);
   }
 
-  return urlStruct.notReal(request, response);
+  return urlStruct.notFound(request, response);
 }
 
 http.createServer(onRequest).listen(port, () => {
