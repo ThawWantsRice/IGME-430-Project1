@@ -8,7 +8,7 @@
     "dev": "npm run watch & npm run start",
     "heroku-postbuild": "webpack --mode production",
     "pretest": "eslint ./src --fix",
-    "start": "nodemon -e js,html,css --watch ./src --watch ./hosted ./src/server.js",
+    "start": "node ./src/server.js",
     "test": "echo \"Tests complete\"",
     "watch": "webpack --watch"
   },
