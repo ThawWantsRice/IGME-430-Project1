@@ -10,6 +10,8 @@ const urlStruct = {
   '/bundle.js': htmlHandler.getBundle,
   '/getPokemon': jsonHandler.getPokemon,
   '/getPokemonType': jsonHandler.getPokemonType,
+  '/getPokemonIMG': jsonHandler.getPokemonIMG,
+  '/getPokemonSize': jsonHandler.getPokemonSize,
 
   notFound: jsonHandler.notFound,
 };

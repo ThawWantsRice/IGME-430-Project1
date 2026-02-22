@@ -63,19 +63,47 @@ const getPokemonType = (request, response) => {
 
   const found = pokedexData.filter((pokemon) => pokemon.type.some(t => t.toLowerCase() === type.toLowerCase()));
 
-  if (found.length === 0){
+  if (found.length === 0) {
     return respondJSON(request, response, 404, { message: "No Pokemon found for this type", id: 'notFound' });
   }
 
   return respondJSON(request, response, 200, found);
 }
 
+//Get the IMG URL associated with the pokemon
 const getPokemonIMG = (request, response) => {
+  const parsedUrl = url.parse(request.url, true);
+  const { name } = parsedUrl.query;
 
+  if (!name) {
+    return respondJSON(request, response, 400, { message: "Name Parameter is required", id: 'missingNameParams' });
+  }
+
+  const found = pokedexData.find((pokemon) => pokemon.name.toLowerCase() === name.toLowerCase());
+
+  if (!found) {
+    return respondJSON(request, response, 404, { message: "No Pokemon found", id: 'notFound' });
+  }
+
+  return respondJSON(request, response, 200, { name: found.name, img: found.img });
 }
 
+//Get the Pokemon Size(Weight and Height)
 const getPokemonSize = (request, response) => {
+  const parsedUrl = url.parse(request.url, true);
+  const { name } = parsedUrl.query;
 
+  if (!name) {
+    return respondJSON(request, response, 400, { message: "Name Parameter is required", id: 'missingNameParams' });
+  }
+
+  const found = pokedexData.find((pokemon) => pokemon.name.toLowerCase() === name.toLowerCase());
+
+  if (!found) {
+    return respondJSON(request, response, 404, { message: "No Pokemon found", id: 'notFound' });
+  }
+
+  return respondJSON(request, response, 200, { name: found.name, weight: found.weight, height: found.height});
 }
 
 
@@ -93,5 +121,7 @@ const notFound = (request, response) => {
 module.exports = {
   getPokemon,
   getPokemonType,
+  getPokemonIMG,
+  getPokemonSize,
   notFound,
 };
