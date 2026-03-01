@@ -13,11 +13,68 @@
     <h1>Pokemon API Test</h1>
     <p>Info on endpoints to be add.</p>
 
+    <!-- Section: GET Pokémon -->
+    <section id="getAPI">
+
+        <div class="form-box">
+            <h2>Get Pokemon</h2>
+            <form action="/getPokemon" id="getPokemonForm">
+                <label for="pokemonName">Name (optional): </label>
+                <input type="text" name="name" placeholder="e.g. Bulbasaur"><br>
+                <label for="Get">Get</label>
+                <input type="radio" name="method" value="GET" checked>
+                <label for="Head">Head</label>
+                <input type="radio" name="method" value="HEAD">
+                <button type="submit">Get Pokemon</button>
+            </form>
+        </div>
+
+        <div class="form-box">
+            <h2>Get Pokemon Type</h2>
+            <form action="/getPokemonType" id="getPokemonTypeForm">
+                <label for="pokemonType">Type (required): </label>
+                <input type="text" name="type" placeholder="Fire" required><br>
+                <label for="Get">Get</label>
+                <input type="radio" name="method" value="GET" checked>
+                <label for="Head">Head</label>
+                <input type="radio" name="method" value="HEAD">
+                <button type="submit">Get Pokemon Type</button>
+            </form>
+        </div>
+
+        <div class="form-box">
+            <h2>Get Pokemon IMG</h2>
+            <form action="/getPokemonIMG" id="getPokemonIMGForm">
+                <label for="pokemonName">Name (required): </label>
+                <input type="text" name="name" placeholder="e.g. Bulbasaur" required><br>
+                <label for="Get">Get</label>
+                <input type="radio" name="method" value="GET" checked>
+                <label for="Head">Head</label>
+                <input type="radio" name="method" value="HEAD">
+                <button type="submit">Get Pokemon</button>
+            </form>
+        </div>
+
+        <div class="form-box">
+            <h2>Get Pokemon Size</h2>
+            <form action="/getPokemonSize" id="getPokemonSizeForm">
+                <label for="pokemonName">Name (required): </label>
+                <input type="text" name="name" placeholder="e.g. Bulbasaur" required><br>
+                <label for="Get">Get</label>
+                <input type="radio" name="method" value="GET" checked>
+                <label for="Head">Head</label>
+                <input type="radio" name="method" value="HEAD">
+                <button type="submit">Get Pokemon</button>
+            </form>
+        </div>
+
+    </section>
+
     <!-- Section: Add/Update Pokémon -->
     <section>
-        <h2>Add or Update Pokémon</h2>
         <div class="form-box">
-            <form id="pokemonForm" action="/addPokemon" method="post">
+            <h2>Add or Update Pokémon</h2>
+            <form id="addPokemonForm" action="/addPokemon" method="post">
                 <label>Name:</label>
                 <input type="text" id="addPokemonName" required placeholder="Bulbasaur" />
 

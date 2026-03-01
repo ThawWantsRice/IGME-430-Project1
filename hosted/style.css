@@ -39,6 +39,16 @@ button:hover {
     background-color: #1f5c8f;
 }
 
+#getAPI{
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+}
+
+#getAPI div{
+
+}
+
 #content {
     background: white;
     border-radius: 10px;

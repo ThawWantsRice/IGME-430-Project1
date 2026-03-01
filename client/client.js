@@ -36,14 +36,53 @@ const handleResponse = async (response, parseResponse) => {
 
             content.innerHTML += statusLine + lengthLine + responseLine;
         } catch (err) {
-            content.innerHTML += `<p>No JSON response</p>`;
+            content.innerHTML += `<p>Empty Body</p>`;
         }
     }
 };
 
 //GET/HEAD
-const sendRequest = async (url, method = 'GET') => {
-    const response = await fetch(url, {
+const sendRequest = async (form) => {
+    const url = form.getAttribute('action');
+    const method = form.querySelector('input[name="method"]:checked').value;
+
+    //Check for text in textFields
+    const input = form.querySelector('input[name]');
+    if (!input) {
+        console.error("No input found in form!");
+        return;
+    }
+    const paramKey = input.name;
+    const paramValue = input.value.trim();
+
+    const requestUrl = paramValue ? `${url}?${encodeURIComponent(paramKey)}=${encodeURIComponent(paramValue)}` : url;
+
+    const response = await fetch(requestUrl, {
+        method,
+        headers: {
+            'Accept': 'application/json',
+        },
+    });
+
+    handleResponse(response, true);
+};
+
+const sendRequestType = async (form) => {
+    const url = form.getAttribute('action');
+    const method = form.querySelector('input[name="method"]:checked').value;
+
+    //Check for text in textFields
+    const input = form.querySelector('input[type="text"]');
+    if (!input) {
+        console.error("No input found in form!");
+        return;
+    }
+    const paramKey = input.name;
+    const paramValue = input.value.trim();
+
+    const requestUrl = paramValue ? `${url}?${encodeURIComponent(paramKey)}=${encodeURIComponent(paramValue)}` : url;
+
+    const response = await fetch(requestUrl, {
         method,
         headers: {
             'Accept': 'application/json',
@@ -97,15 +136,48 @@ const sendPost = async (form) => {
 };
 
 const init = () => {
-    const pokemonForm = document.querySelector("#pokemonForm");
+    const addPokemonForm = document.querySelector("#addPokemonForm");
+    const getPokemonForm = document.querySelector('#getPokemonForm');
+    const getPokemonTypeForm = document.querySelector('#getPokemonTypeForm');
+    const getPokemonIMGForm = document.querySelector("#getPokemonIMGForm");
+    const getPokemonSizeForm = document.querySelector("#getPokemonSizeForm");
 
-    const addPokemon = (e) => {
+    const getPokemon = (e) => {
         e.preventDefault();
-        sendPost(pokemonForm);
+        sendRequest(getPokemonForm);
         return false;
     }
 
-    pokemonForm.addEventListener('submit', addPokemon);
+    const getPokemonType = (e) =>{
+        e.preventDefault();
+        sendRequestType(getPokemonTypeForm);
+        return false;
+    }
+
+    const getPokemonIMG = (e) =>{
+        e.preventDefault();
+        sendRequest(getPokemonIMGForm);
+        return false;
+    }
+
+    const getPokemonSize = (e) =>{
+        e.preventDefault();
+        sendRequest(getPokemonSizeForm);
+        return false;
+    }
+
+    const addPokemon = (e) => {
+        e.preventDefault();
+        sendPost(addPokemonForm);
+        return false;
+    }
+
+    getPokemonForm.addEventListener('submit', getPokemon);
+    getPokemonTypeForm.addEventListener('submit', getPokemonType);
+    getPokemonIMGForm.addEventListener('submit', getPokemonIMG);
+    getPokemonSizeForm.addEventListener('submit', getPokemonSize);
+    addPokemonForm.addEventListener('submit', addPokemon);
+
 }
 
 window.onload = init;
