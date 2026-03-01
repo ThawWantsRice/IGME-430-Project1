@@ -12,6 +12,10 @@ h2 {
     margin-top: 30px;
 }
 
+h3{
+    color: #2a75bb;
+}
+
 .form-box {
     background: white;
     border-radius: 10px;
@@ -39,14 +43,10 @@ button:hover {
     background-color: #1f5c8f;
 }
 
-#getAPI{
+#getAPI {
     display: grid;
     grid-template-columns: auto auto;
     padding: 10px;
-}
-
-#getAPI div{
-
 }
 
 #content {
@@ -57,4 +57,24 @@ button:hover {
     white-space: pre-wrap;
     max-height: 400px;
     overflow-y: auto;
+}
+
+#apiDoc {
+    background: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.endpoint {
+    font-weight: bold;
+    background-color: gray;
+    color: white;
 }

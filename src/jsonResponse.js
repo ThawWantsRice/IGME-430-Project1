@@ -112,6 +112,11 @@ const addPokemon = (request, response) => {
     });
   }
 
+  //Make sure type is a []
+  if (!Array.isArray(type)) {
+    type = [type];
+  }
+
   // Allow empty img
   img = img || '';
 

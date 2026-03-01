@@ -7,6 +7,7 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 const urlStruct = {
   '/': htmlHandler.getIndex,
+  '/documentation.html': htmlHandler.getDocumentation,
   '/style.css': htmlHandler.getCSS,
   '/bundle.js': htmlHandler.getBundle,
   '/getPokemon': jsonHandler.getPokemon,
@@ -49,9 +50,6 @@ const parseBody = (request, response, handler) => {
 
 const handlePost = (request, response, parsedUrl) => {
   if (parsedUrl.pathname === '/addPokemon') {
-    parseBody(request, response, jsonHandler.addPokemon);
-  }
-  if (parsedUrl.pathname === '/updatePokemon') {
     parseBody(request, response, jsonHandler.addPokemon);
   }
 }

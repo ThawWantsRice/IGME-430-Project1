@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>API Documentation</title>
+</head>
+
+<body>
+    <h1>Pokemon API Documentation</h1>
+    <a href="/">Test API HERE</a>
+
+    <section id="apiDoc">
+        <h2>GET/HEAD Endpoints</h2>
+
+        <h3>/getPokemon</h3>
+        <p class="endpoint">GET /getPokemon</p>
+        <p class="endpoint">HEAD /getPokemon</p>
+
+        <h4>Query Parameters</h4>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Required</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>No</td>
+                <td>Partial Pokémon name (case-insensitive)</td>
+            </tr>
+        </table>
+
+        <p><strong>Example:</strong></p>
+        <p>Request: /getPokemon</p>
+        <pre>Result: "id": 1, "num": "001", "name": "Bulbasaur", "img": "http://www.serebii.net/pokemongo/pokemon/001.png" "type": ["Grass","Poison"]"height": "0.71 m","weight": "6.9 kg","weaknesses": ["Fire","Ice","Flying","Psychic"],"next_evolution": [{"num": "002","name": "Ivysaur"},{"num": "003","name": "Venusaur"}]"id": 2,"num": "002","name": "Ivysaur","img": "http://www.serebii.net/pokemongo/pokemon/002.png","type": ["Grass","Poison"],"height": "0.99 m","weight": "13.0 kg","weaknesses": ["Fire","Ice","Flying","Psychic"],"next_evolution": [{"num": "003","name": "Venusaur"}]...</pre>
+
+        <p>Request: /getPokemon?name=Bulba</p>
+        <pre>Result: "id": 1,
+            "num": "001",
+            "name": "Bulbasaur",
+            "img": "http://www.serebii.net/pokemongo/pokemon/001.png",
+            "type": [
+            "Grass",
+            "Poison"
+            ],
+            "height": "0.71 m",
+            "weight": "6.9 kg",
+            "weaknesses": [
+            "Fire",
+            "Ice",
+            "Flying",
+            "Psychic"
+            ],
+            "next_evolution": [
+            {
+            "num": "002",
+            "name": "Ivysaur"
+            },
+            {
+            "num": "003",
+            "name": "Venusaur"
+            }
+            ]</pre>
+<br><br>
+        <h3>/getPokemonType</h3>
+        <p class="endpoint">GET /getPokemon</p>
+        <p class="endpoint">HEAD /getPokemon</p>
+
+        <h4>Query Parameters</h4>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Required</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>Yes</td>
+                <td>Full Pokemon Type</td>
+            </tr>
+        </table>
+
+        <p><strong>Example:</strong></p>
+        <p>Request: /getPokemonType?type=fire</p>
+        <pre>Result: [{"id": 4,"num": "004","name": "Charmander","img": "http://www.serebii.net/pokemongo/pokemon/004.png","type": ["Fire"],"height": "0.61 m","weight": "8.5 kg","weaknesses": ["Water","Ground","Rock"],"next_evolution": [{"num": "005","name": "Charmeleon"},{"num": "006","name": "Charizard"}]},{"id": 5,"num": "005","name": "Charmeleon","img": "http://www.serebii.net/pokemongo/pokemon/005.png","type": ["Fire"],"height": "1.09 m","weight": "19.0 kg","weaknesses": ["Water","Ground","Rock"],"next_evolution": [{"num": "006","name": "Charizard"}]},...</pre>
+
+        <p>Request: /getPokemonType?type=fir</p>
+        <pre>Result:{"message": "No Pokemon found for this type","id": "notFound"}</pre>
+<br><br> 
+        <h3>/getPokemonIMG</h3>
+        <p class="endpoint">GET /getPokemon</p>
+        <p class="endpoint">HEAD /getPokemon</p>
+
+        <h4>Query Parameters</h4>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Required</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>Yes</td>
+                <td>Full Pokemon Name</td>
+            </tr>
+        </table>
+
+        <p><strong>Example:</strong></p>
+        <p>Request: /getPokemonIMG?name=Bulbasaur</p>
+        <pre>Result: {"name": "Bulbasaur","img": "http://www.serebii.net/pokemongo/pokemon/001.png"}</pre>
+
+        <p>Request: /getPokemonIMG?name=Fake</p>
+        <pre>Result:{"message": "No Pokemon found","id": "notFound"}</pre>
+<br><br>
+        <h3>/getPokemonSize</h3>
+        <p class="endpoint">GET /getPokemon</p>
+        <p class="endpoint">HEAD /getPokemon</p>
+
+        <h4>Query Parameters</h4>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Required</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>Yes</td>
+                <td>Full Pokemon Name</td>
+            </tr>
+        </table>
+
+        <p><strong>Example:</strong></p>
+        <p>Request: /getPokemonSize?name=Bulbasaur</p>
+        <pre>Result: {"name": "Bulbasaur","weight": "6.9 kg","height": "0.71 m"}</pre>
+
+        <p>Request: /getPokemonSize?name=bulb</p>
+        <pre>Result:{"message": "No Pokemon found","id": "notFound"}</pre>
+<br><br>
+        <h2>POST Endpoints</h2>
+        <h3>/addPokemon</h3>
+        <p class="endpoint">POST /addPokemon</p>
+
+        <h4>Query Parameters</h4>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Required</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>Yes</td>
+                <td>Full Pokemon Name</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>Yes</td>
+                <td>Full Pokemon Type</td>
+            </tr>
+            <tr>
+                <td>weight</td>
+                <td>Yes</td>
+                <td>Pokemon Weight</td>
+            </tr>
+            <tr>
+                <td>Height</td>
+                <td>Yes</td>
+                <td>Pokemon Height</td>
+            </tr>
+            <tr>
+                <td>IMG</td>
+                <td>No</td>
+                <td>IMG URL http://</td>
+            </tr>
+        </table>
+
+        <p><strong>Example:</strong></p>
+        <p>Request: /addPokemon</p>
+        <p>Body: {name: 'name', type: '[normal]', weight: '1', height: '1', img:''}</p>
+        <pre>Result: {"pokemon": {"id": 152,"num": "152","name": "name","type": "Normal","weight": "1","height": "1","img": "","weaknesses": []}}</pre>
+
+        <p>Request: /addPokemon</p>
+        <p>Body: {name: '', type: '[normal]', weight: '1', height: '1', img:''}</p>
+        <pre>Result:{"message": "Missing required fields","id": "missingParams"}</pre>
+    </section>
+</body>
+
+</html>
