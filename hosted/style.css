@@ -1,15 +1,50 @@
-body{
+body {
     background-color: rgb(255, 222, 222);
 }
 
-h1, p{
+h1 {
     text-align: center;
+    color: #2a75bb;
 }
 
-p{
+h2 {
+    color: #2a75bb;
+    margin-top: 30px;
+}
+
+.form-box {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+p {
+    text-align: center;
     font-size: large;
 }
 
-#content{
-    text-align: center;
+button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2a75bb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1f5c8f;
+}
+
+#content {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    white-space: pre-wrap;
+    max-height: 400px;
+    overflow-y: auto;
 }

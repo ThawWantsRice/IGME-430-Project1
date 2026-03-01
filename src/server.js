@@ -1,4 +1,5 @@
 const http = require('http');
+const query = require('querystring');
 const htmlHandler = require('./htmlResponse.js');
 const jsonHandler = require('./jsonResponse.js');
 
@@ -16,15 +17,62 @@ const urlStruct = {
   notFound: jsonHandler.notFound,
 };
 
-const onRequest = (request, response) => {
-  const protocol = request.connection.encrypted ? 'https' : 'http';
-  const parsedUrl = new URL(request.url, `${protocol}://${request.headers.host}`);
+const parseBody = (request, response, handler) => {
+  const body = [];
 
+  request.on('error', (err) => {
+    console.dir(err);
+    response.statusCode = 400;
+    response.end();
+  });
+
+  request.on('data', (chunk) => {
+    body.push(chunk);
+  });
+
+  request.on('end', () => {
+    const bodyString = Buffer.concat(body).toString();
+    const type = request.headers['content-type'];
+    if (type === 'application/x-www-form-urlencoded') {
+      request.body = query.parse(bodyString);
+    } else if (type === 'application/json') {
+      request.body = JSON.parse(bodyString);
+    } else {
+      response.writeHead(400, { 'Content-Type': 'application/json' });
+      response.write(JSON.stringify({ error: 'invalid data format' }));
+      return response.end();
+    }
+
+    handler(request, response);
+  });
+}
+
+const handlePost = (request, response, parsedUrl) => {
+  if (parsedUrl.pathname === '/addPokemon') {
+    parseBody(request, response, jsonHandler.addPokemon);
+  }
+  if (parsedUrl.pathname === '/updatePokemon') {
+    parseBody(request, response, jsonHandler.addPokemon);
+  }
+}
+
+const handleGet = (request, response, parsedUrl) => {
   if (urlStruct[parsedUrl.pathname]) {
     return urlStruct[parsedUrl.pathname](request, response);
   }
 
-  return urlStruct.notFound(request, response);
+  return jsonHandler.notFound(request, response);
+}
+
+const onRequest = (request, response) => {
+  const protocol = request.connection.encrypted ? 'https' : 'http';
+  const parsedUrl = new URL(request.url, `${protocol}://${request.headers.host}`);
+
+  if (request.method === 'POST') {
+    handlePost(request, response, parsedUrl);
+  } else {
+    handleGet(request, response, parsedUrl);
+  }
 }
 
 http.createServer(onRequest).listen(port, () => {
