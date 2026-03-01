@@ -1,8 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 const url = require('url');
 const pokedexData = require('./json/pokedex.json');
-const { request } = require('http');
 
 const respondJSON = (request, response, status, object) => {
   const content = JSON.stringify(object);
@@ -131,8 +128,8 @@ const addPokemon = (request, response) => {
   }
 
   //Grab latest number id
-  id = pokedexData[pokedexData.length - 1].id + 1;
-  num = `${id}`;
+  const id = pokedexData[pokedexData.length - 1].id + 1;
+  const num = `${id}`;
 
   const newPokemon = {
     id,
