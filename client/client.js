@@ -67,31 +67,6 @@ const sendRequest = async (form) => {
     handleResponse(response, true);
 };
 
-const sendRequestType = async (form) => {
-    const url = form.getAttribute('action');
-    const method = form.querySelector('input[name="method"]:checked').value;
-
-    //Check for text in textFields
-    const input = form.querySelector('input[type="text"]');
-    if (!input) {
-        console.error("No input found in form!");
-        return;
-    }
-    const paramKey = input.name;
-    const paramValue = input.value.trim();
-
-    const requestUrl = paramValue ? `${url}?${encodeURIComponent(paramKey)}=${encodeURIComponent(paramValue)}` : url;
-
-    const response = await fetch(requestUrl, {
-        method,
-        headers: {
-            'Accept': 'application/json',
-        },
-    });
-
-    handleResponse(response, true);
-};
-
 //Add Pokemon Entry
 const sendPost = async (form) => {
     const url = form.getAttribute('action');
@@ -150,7 +125,7 @@ const init = () => {
 
     const getPokemonType = (e) =>{
         e.preventDefault();
-        sendRequestType(getPokemonTypeForm);
+        sendRequest(getPokemonTypeForm);
         return false;
     }
 
